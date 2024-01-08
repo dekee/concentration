@@ -7,18 +7,38 @@
 
 import SwiftUI
 
+//Struct name is ContentView
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    var body: some View { //can also be Text but the body has to be Text
+        //computed property. readonly
+        HStack {
+          CardView(isFaceUp: true)
+          CardView()
+          CardView()
+          CardView()
         }
+       
+        .foregroundColor(.orange)
         .padding()
     }
 }
 
+struct CardView: View {
+    var isFaceUp: Bool = false; // Every var has to have a value
+    var body: some View {
+        ZStack {
+            if isFaceUp {
+                RoundedRectangle(cornerRadius: 12.0).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 12.0)
+                    .strokeBorder(lineWidth: 2)
+                Text("👻").font(.largeTitle)
+            } else {
+                RoundedRectangle(cornerRadius: 12.0)
+            }
+            
+        }
+    }
+}
 #Preview {
     ContentView()
 }
